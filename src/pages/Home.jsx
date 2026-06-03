@@ -4,6 +4,11 @@ import { TypewriterEffect } from '../components/ui/typewriter-effect';
 import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card';
 import { Package, Truck, ShieldCheck, MapPin, Download, ChevronRight, Phone, ChevronDown, Star, Search, CheckCircle, Calculator, Building2, Store, Briefcase, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('mini-truck');
@@ -36,14 +41,14 @@ function Home() {
               GoToGo Post: Delhi NCR's #1
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
               GoToGo Post. <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">
                 Delhi NCR Delivery.
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-600 max-w-lg mb-10 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-lg mb-10 leading-relaxed">
               Get a mini-truck, bike courier, or professional packers at your doorstep in minutes. Fast, transparent, and strictly local.
             </p>
             
@@ -111,43 +116,97 @@ function Home() {
       </section>
 
       {/* 2. Trusted By Section */}
-      <section className="py-12 bg-white border-y border-slate-200">
+      <section className="py-12 bg-white border-y border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <p className="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Trusted by 10,000+ Businesses in Delhi NCR</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-             <div className="text-2xl font-black font-serif text-blue-700">AcmeCorp</div>
-             <div className="text-2xl font-black font-mono text-emerald-600">TechLogis</div>
-             <div className="text-2xl font-black font-sans text-rose-600">GlobalMart</div>
-             <div className="text-2xl font-black italic text-violet-600">SwiftShip</div>
-             <div className="text-2xl font-black font-serif text-slate-700">AcmeCorp</div>
-             <div className="text-2xl font-black font-mono text-slate-700">TechLogis</div>
-             <div className="text-2xl font-black font-sans text-slate-700">GlobalMart</div>
-             <div className="text-2xl font-black italic text-slate-700">SwiftShip</div>
-             <div className="text-2xl font-black tracking-widest text-slate-700">VERTEX</div>
+          
+          <div className="relative flex overflow-x-hidden group">
+            <div className="animate-marquee py-2">
+               {/* First Set */}
+               <div className="flex items-center gap-10 md:gap-16 px-4 md:px-8">
+                 <div className="text-xl md:text-2xl font-black font-serif text-blue-700">AcmeCorp</div>
+                 <div className="text-xl md:text-2xl font-black font-mono text-emerald-600">TechLogis</div>
+                 <div className="text-xl md:text-2xl font-black font-sans text-rose-600">GlobalMart</div>
+                 <div className="text-xl md:text-2xl font-black italic text-violet-600">SwiftShip</div>
+                 <div className="text-xl md:text-2xl font-black font-serif text-slate-700">RapidMove</div>
+                 <div className="text-xl md:text-2xl font-black tracking-widest text-orange-500">VERTEX</div>
+                 <div className="text-xl md:text-2xl font-black font-mono text-cyan-600">UrbanDrop</div>
+               </div>
+               {/* Duplicated Set for infinite scroll */}
+               <div className="flex items-center gap-10 md:gap-16 px-4 md:px-8">
+                 <div className="text-xl md:text-2xl font-black font-serif text-blue-700">AcmeCorp</div>
+                 <div className="text-xl md:text-2xl font-black font-mono text-emerald-600">TechLogis</div>
+                 <div className="text-xl md:text-2xl font-black font-sans text-rose-600">GlobalMart</div>
+                 <div className="text-xl md:text-2xl font-black italic text-violet-600">SwiftShip</div>
+                 <div className="text-xl md:text-2xl font-black font-serif text-slate-700">RapidMove</div>
+                 <div className="text-xl md:text-2xl font-black tracking-widest text-orange-500">VERTEX</div>
+                 <div className="text-xl md:text-2xl font-black font-mono text-cyan-600">UrbanDrop</div>
+               </div>
+            </div>
+            
+            {/* Gradient overlays for smooth fading edges */}
+            <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           </div>
         </div>
       </section>
 
       {/* 3. Services Section */}
-      <section id="services" className="py-24 bg-slate-50 border-t border-slate-200">
+      <section id="services" className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">GoToGo Post Services</h2>
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">GoToGo Post Services</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">From documents to full truckloads, we have the right vehicle for every delivery in Delhi NCR.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
             <ServiceCard title="Express Courier" desc="Same-day delivery for parcels and documents across the city." icon={<Package className="w-8 h-8 text-red-600" />} />
             <ServiceCard title="Packers & Movers" desc="Stress-free home and office relocation services by experts." icon={<Truck className="w-8 h-8 text-red-600" />} />
             <ServiceCard title="Secure Freight" desc="High-security transportation for valuable and fragile goods." icon={<ShieldCheck className="w-8 h-8 text-red-600" />} />
+          </div>
+
+          {/* Mobile 3D Carousel */}
+          <div className="block md:hidden">
+            <Swiper
+              effect={'coverflow'}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={'auto'}
+              loop={true}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{ clickable: true }}
+              modules={[EffectCoverflow, Autoplay, Pagination]}
+              className="w-full pb-12 pt-4"
+            >
+              <SwiperSlide className="w-[80%]">
+                <ServiceCard title="Express Courier" desc="Same-day delivery for parcels and documents across the city." icon={<Package className="w-8 h-8 text-red-600" />} />
+              </SwiperSlide>
+              <SwiperSlide className="w-[80%]">
+                <ServiceCard title="Packers & Movers" desc="Stress-free home and office relocation services by experts." icon={<Truck className="w-8 h-8 text-red-600" />} />
+              </SwiperSlide>
+              <SwiperSlide className="w-[80%]">
+                <ServiceCard title="Secure Freight" desc="High-security transportation for valuable and fragile goods." icon={<ShieldCheck className="w-8 h-8 text-red-600" />} />
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </section>
 
       {/* 4. Shipment Tracking Section */}
-      <section className="py-24 bg-red-600 relative overflow-hidden">
+      <section className="py-16 lg:py-24 bg-red-600 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Track Your Shipment</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Track Your Shipment</h2>
           <p className="text-red-100 mb-10 text-lg">Enter your tracking ID to get real-time updates on your package.</p>
           
           <div className="bg-white p-2 rounded-2xl shadow-2xl flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
@@ -163,10 +222,10 @@ function Home() {
       </section>
 
       {/* 5. How It Works Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Why GoToGo Post?</h2>
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Why GoToGo Post?</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">We combine technology with a robust local delivery network to give you the best logistics experience.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
@@ -180,10 +239,10 @@ function Home() {
       </section>
 
       {/* 6. Features Section */}
-      <section id="features" className="py-24 bg-slate-50 relative">
+      <section id="features" className="py-16 lg:py-24 bg-slate-50 relative">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Built for Reliability</h2>
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Built for Reliability</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">We go above and beyond to ensure your packages and belongings reach safely, every single time.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,12 +257,12 @@ function Home() {
       </section>
 
       {/* 7. Pricing Calculator Section */}
-      <section id="pricing" className="py-24 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl font-bold text-slate-900 mb-6">Transparent Pricing Calculator</h2>
-            <p className="text-lg text-slate-600 mb-8">Get an instant estimate for your shipment in Delhi NCR & up to 150km away.</p>
-            <ul className="space-y-4">
+      <section id="pricing" className="py-16 lg:py-24 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">Transparent Pricing Calculator</h2>
+            <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-md mx-auto lg:mx-0">Get an instant estimate for your shipment in Delhi NCR & up to 150km away.</p>
+            <ul className="space-y-4 max-w-sm mx-auto lg:mx-0 text-left inline-block">
               <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-red-500" /> Lowest per-kg rates in the industry</li>
               <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-red-500" /> Free doorstep pickup included</li>
               <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-red-500" /> Volume discounts for businesses</li>
@@ -244,10 +303,10 @@ function Home() {
       </section>
 
       {/* 8. Business Solutions Section */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Business Solutions</h2>
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Business Solutions</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">Tailored logistics infrastructure for businesses of all sizes.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -275,25 +334,61 @@ function Home() {
       </section>
 
       {/* 9. Testimonials Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-16 lg:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">What Our Customers Say</h2>
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">What Our Customers Say</h2>
             <p className="text-slate-600">Don't just take our word for it.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <TestimonialCard name="Aarti Sharma" role="Small Business Owner" text="GoTogo Post has completely transformed how I handle my e-commerce deliveries. Fast, reliable, and the app makes tracking so easy!" />
-            <TestimonialCard name="Rajesh Kumar" role="Relocated to Bangalore" text="I used their Packers & Movers service for my entire 3BHK. The team was extremely professional, and not a single item was scratched." />
-            <TestimonialCard name="Priya Singh" role="Regular User" text="The city courier service is a lifesaver. I send documents across town in under 2 hours. Very affordable and highly recommended." />
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+            <TestimonialCard name="Priya Sharma" role="Boutique Owner" text="GoToGo Post completely transformed my e-commerce delivery. Super fast and reliable!" />
+            <TestimonialCard name="Rahul Verma" role="IT Professional" text="Used them for my house relocation. The packers were professional, and nothing was broken." />
+            <TestimonialCard name="Ankit Gupta" role="Agency Director" text="Their enterprise API made tracking completely automated. Highly recommended for businesses." />
+          </div>
+
+          {/* Mobile 3D Carousel */}
+          <div className="block md:hidden">
+            <Swiper
+              effect={'coverflow'}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={'auto'}
+              loop={true}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              pagination={{ clickable: true }}
+              modules={[EffectCoverflow, Autoplay, Pagination]}
+              className="w-full pb-12 pt-4"
+            >
+              <SwiperSlide className="w-[85%]">
+                <TestimonialCard name="Priya Sharma" role="Boutique Owner" text="GoToGo Post completely transformed my e-commerce delivery. Super fast and reliable!" />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <TestimonialCard name="Rahul Verma" role="IT Professional" text="Used them for my house relocation. The packers were professional, and nothing was broken." />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <TestimonialCard name="Ankit Gupta" role="Agency Director" text="Their enterprise API made tracking completely automated. Highly recommended for businesses." />
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </section>
 
       {/* 10. FAQ Section */}
-      <section id="faq" className="py-24 bg-slate-50 relative">
+      <section id="faq" className="py-16 lg:py-24 bg-slate-50 relative">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
             <p className="text-slate-600">Everything you need to know about our services.</p>
           </div>
           <div className="space-y-4">
@@ -306,14 +401,14 @@ function Home() {
       </section>
 
       {/* 11. Final CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 border-t-4 border-red-500 relative overflow-hidden">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 border-t-4 border-red-500 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
         
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-8">Ready to Ship with GoToGo?</h2>
-          <p className="text-xl text-blue-200 mb-12">Join thousands of businesses and individuals in Delhi NCR who trust GoTogo Post for their daily logistics needs.</p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 lg:mb-8">Ready to Ship with GoToGo?</h2>
+          <p className="text-lg md:text-xl text-blue-200 mb-10 lg:mb-12">Join thousands of businesses and individuals in Delhi NCR who trust GoTogo Post for their daily logistics needs.</p>
+          <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
             <button onClick={() => navigate('/coming-soon')} className="px-10 py-5 bg-red-600 text-white font-bold text-lg rounded-xl shadow-[0_8px_16px_rgb(220,38,38,0.3)] hover:bg-red-700 hover:-translate-y-1 transition duration-200">
               Get Started Now
             </button>
