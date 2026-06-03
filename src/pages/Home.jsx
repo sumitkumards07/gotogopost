@@ -18,6 +18,52 @@ function Home() {
     document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
   };
 
+  const QuickEstimateUI = (
+    <div className="w-full relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[3rem] blur-2xl opacity-20 translate-y-4"></div>
+      
+      <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] p-6 lg:p-8 shadow-[0_8px_32px_rgba(31,38,135,0.1)] relative z-10 w-full text-left">
+        <h3 className="text-xl lg:text-2xl font-bold text-slate-800 mb-6">Quick Estimate</h3>
+        
+        <div className="flex p-1 bg-white/50 backdrop-blur-sm rounded-xl mb-6 shadow-inner border border-white/20">
+          <button 
+            onClick={() => setActiveTab('mini-truck')}
+            className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'mini-truck' ? 'bg-white shadow-sm text-red-600 scale-100' : 'text-slate-600 hover:text-slate-900 scale-95'}`}>
+            Mini Truck
+          </button>
+          <button 
+            onClick={() => setActiveTab('2-wheeler')}
+            className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === '2-wheeler' ? 'bg-white shadow-sm text-red-600 scale-100' : 'text-slate-600 hover:text-slate-900 scale-95'}`}>
+            2-Wheeler
+          </button>
+        </div>
+
+        <div className="space-y-4 relative">
+          {/* Connecting visual line */}
+          <div className="absolute left-[15px] top-[24px] bottom-[24px] w-0.5 z-0 border-l-2 border-dashed border-slate-300"></div>
+          
+          <div className="relative z-10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-slate-100">
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+            </div>
+            <input type="text" placeholder="Pickup location (e.g. Noida Sec 62)" className="w-full p-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-sm font-medium text-slate-800 placeholder-slate-500 shadow-sm transition-all" />
+          </div>
+          
+          <div className="relative z-10 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-slate-100">
+              <MapPin className="w-4 h-4 text-red-500" />
+            </div>
+            <input type="text" placeholder="Drop location (e.g. Gurugram Sec 44)" className="w-full p-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-sm font-medium text-slate-800 placeholder-slate-500 shadow-sm transition-all" />
+          </div>
+        </div>
+        
+        <button onClick={scrollToPricing} className="w-full mt-8 bg-red-600/90 backdrop-blur-md text-white font-bold py-4 rounded-2xl hover:bg-red-700 transition-all flex items-center justify-center gap-2 shadow-[0_4px_14px_0_rgb(220,38,38,0.39)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.23)] hover:-translate-y-0.5">
+          See Prices <ArrowRight className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div className="bg-slate-50 overflow-x-hidden font-sans">
 
@@ -48,68 +94,33 @@ function Home() {
               </span>
             </h1>
             
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-lg mb-10 leading-relaxed">
+            {/* Mobile Widget Placement */}
+            <div className="w-full max-w-md mx-auto relative mb-8 block lg:hidden">
+              {QuickEstimateUI}
+            </div>
+            
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-lg mb-10 leading-relaxed hidden lg:block">
               Get a mini-truck, bike courier, or professional packers at your doorstep in minutes. Fast, transparent, and strictly local.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <button onClick={() => navigate('/coming-soon')} className="px-8 py-4 bg-red-600 text-white font-bold rounded-xl shadow-[0_8px_16px_rgb(220,38,38,0.2)] hover:bg-red-700 hover:-translate-y-1 transition duration-200 flex items-center justify-center gap-2">
+              <button onClick={() => navigate('/coming-soon')} className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white font-bold rounded-xl shadow-[0_8px_16px_rgb(220,38,38,0.2)] hover:bg-red-700 hover:-translate-y-1 transition duration-200 flex items-center justify-center gap-2">
                 Download App <Download className="w-5 h-5" />
               </button>
-              <button onClick={() => navigate('/contact')} className="px-8 py-4 bg-white text-slate-700 font-bold rounded-xl border border-slate-200 hover:bg-slate-50 hover:shadow-sm hover:-translate-y-1 transition duration-200 flex items-center justify-center gap-2">
+              <button onClick={() => navigate('/contact')} className="hidden lg:flex px-8 py-4 bg-white text-slate-700 font-bold rounded-xl border border-slate-200 hover:bg-slate-50 hover:shadow-sm hover:-translate-y-1 transition duration-200 items-center justify-center gap-2">
                 Enterprise Login <ChevronRight className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="mt-10 flex items-center gap-6 text-slate-500 font-medium text-sm">
+            <div className="mt-10 items-center gap-6 text-slate-500 font-medium text-sm hidden lg:flex">
               <div className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-500"/> Verified Drivers</div>
               <div className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-500"/> Lowest Prices</div>
             </div>
           </div>
           
-          {/* Right Side: Interactive Widget */}
-          <div className="w-full max-w-md mx-auto lg:ml-auto relative mt-12 lg:mt-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[3rem] blur-2xl opacity-20 translate-y-4"></div>
-            
-            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] p-8 shadow-[0_8px_32px_rgba(31,38,135,0.1)] relative z-10">
-              <h3 className="text-2xl font-bold text-slate-800 mb-6">Quick Estimate</h3>
-              
-              <div className="flex p-1 bg-white/50 backdrop-blur-sm rounded-xl mb-6 shadow-inner border border-white/20">
-                <button 
-                  onClick={() => setActiveTab('mini-truck')}
-                  className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'mini-truck' ? 'bg-white shadow-sm text-red-600 scale-100' : 'text-slate-600 hover:text-slate-900 scale-95'}`}>
-                  Mini Truck
-                </button>
-                <button 
-                  onClick={() => setActiveTab('2-wheeler')}
-                  className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === '2-wheeler' ? 'bg-white shadow-sm text-red-600 scale-100' : 'text-slate-600 hover:text-slate-900 scale-95'}`}>
-                  2-Wheeler
-                </button>
-              </div>
-
-              <div className="space-y-4 relative">
-                {/* Connecting visual line */}
-                <div className="absolute left-[15px] top-[24px] bottom-[24px] w-0.5 z-0 border-l-2 border-dashed border-slate-300"></div>
-                
-                <div className="relative z-10 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-slate-100">
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                  </div>
-                  <input type="text" placeholder="Pickup location (e.g. Noida Sec 62)" className="w-full p-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-sm font-medium text-slate-800 placeholder-slate-500 shadow-sm transition-all" />
-                </div>
-                
-                <div className="relative z-10 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-slate-100">
-                    <MapPin className="w-4 h-4 text-red-500" />
-                  </div>
-                  <input type="text" placeholder="Drop location (e.g. Gurugram Sec 44)" className="w-full p-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-sm font-medium text-slate-800 placeholder-slate-500 shadow-sm transition-all" />
-                </div>
-              </div>
-              
-              <button onClick={scrollToPricing} className="w-full mt-8 bg-red-600/90 backdrop-blur-md text-white font-bold py-4 rounded-2xl hover:bg-red-700 transition-all flex items-center justify-center gap-2 shadow-[0_4px_14px_0_rgb(220,38,38,0.39)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.23)] hover:-translate-y-0.5">
-                See Prices <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
+          {/* Right Side: Interactive Widget (Desktop) */}
+          <div className="w-full max-w-md mx-auto lg:ml-auto relative hidden lg:block">
+            {QuickEstimateUI}
           </div>
           
         </div>
