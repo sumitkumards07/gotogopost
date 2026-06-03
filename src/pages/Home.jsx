@@ -245,13 +245,58 @@ function Home() {
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Built for Reliability</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">We go above and beyond to ensure your packages and belongings reach safely, every single time.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={<MapPin className="w-8 h-8"/>} title="Real-Time Tracking" desc="Track every shipment live on the app with GPS precision and instant notifications." />
             <FeatureCard icon={<ShieldCheck className="w-8 h-8"/>} title="Insurance Protection" desc="Every package is fully insured from pickup to delivery. Your belongings are protected." />
             <FeatureCard icon={<Phone className="w-8 h-8"/>} title="24/7 Support" desc="Round-the-clock customer support via chat, call, and email. We're always here." />
             <FeatureCard icon={<Package className="w-8 h-8"/>} title="COD Support" desc="Cash on Delivery available for e-commerce shipments across Delhi NCR & 150km radius." />
             <FeatureCard icon={<Store className="w-8 h-8"/>} title="API Integration" desc="Seamlessly integrate our logistics engine directly into your Shopify or custom store." />
             <FeatureCard icon={<Truck className="w-8 h-8"/>} title="Bulk Orders" desc="Specialized dashboards and dedicated managers for handling high-volume business shipments." />
+          </div>
+
+          {/* Mobile 3D Carousel */}
+          <div className="block md:hidden">
+            <Swiper
+              effect={'coverflow'}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={'auto'}
+              loop={true}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{ clickable: true }}
+              modules={[EffectCoverflow, Autoplay, Pagination]}
+              className="w-full pb-12 pt-4"
+            >
+              <SwiperSlide className="w-[85%]">
+                <FeatureCard icon={<MapPin className="w-8 h-8"/>} title="Real-Time Tracking" desc="Track every shipment live on the app with GPS precision and instant notifications." />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <FeatureCard icon={<ShieldCheck className="w-8 h-8"/>} title="Insurance Protection" desc="Every package is fully insured from pickup to delivery. Your belongings are protected." />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <FeatureCard icon={<Phone className="w-8 h-8"/>} title="24/7 Support" desc="Round-the-clock customer support via chat, call, and email. We're always here." />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <FeatureCard icon={<Package className="w-8 h-8"/>} title="COD Support" desc="Cash on Delivery available for e-commerce shipments across Delhi NCR & 150km radius." />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <FeatureCard icon={<Store className="w-8 h-8"/>} title="API Integration" desc="Seamlessly integrate our logistics engine directly into your Shopify or custom store." />
+              </SwiperSlide>
+              <SwiperSlide className="w-[85%]">
+                <FeatureCard icon={<Truck className="w-8 h-8"/>} title="Bulk Orders" desc="Specialized dashboards and dedicated managers for handling high-volume business shipments." />
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </section>
